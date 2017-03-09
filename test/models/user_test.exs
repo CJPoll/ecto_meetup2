@@ -4,7 +4,11 @@ defmodule EctoMeetup.User.Test do
   testing EctoMeetup.User
 
   setup do
-    valid_params = %{}
+    valid_params = %{
+      email: "cjpoll@gmail.com",
+      password: "password",
+      password_confirmation: "password"
+    }
 
     {:ok, %{valid_params: valid_params}}
   end
@@ -14,13 +18,13 @@ defmodule EctoMeetup.User.Test do
   end
 
   describe "email" do
-    required_field :email, tags: :skip
-    unique_field :email, tags: :skip
+    required_field :email
+    unique_field :email
   end
 
   describe "password" do
-    required_field :password, tags: :skip
-    must_match :password, :password_confirmation, tags: :skip
-    minimum_length :password, 8, tags: :skip
+    required_field :password
+    must_match :password, :password_confirmation
+    minimum_length :password, 8
   end
 end
